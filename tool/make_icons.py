@@ -3,7 +3,9 @@
 Run from the project root:  python3 tool/make_icons.py
 Requires Pillow. Then:      dart run flutter_launcher_icons && dart run flutter_native_splash:create
 """
-from PIL import Image, ImageDraw, ImageFilter
+import os
+
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 S = 4          # supersampling factor
 N = 1024       # output size
@@ -85,9 +87,52 @@ fg.alpha_composite(glow(0.30, 0.50))
 fg.alpha_composite(lantern(1.0))
 save(fg, "icon_foreground.png")
 
-# Splash mark: transparent, with its own halo.
-splash = Image.new("RGBA", (W, W), (0, 0, 0, 0))
-splash.alpha_composite(glow(0.26, 0.50))
-splash.alpha_composite(lantern(0.80))
-save(splash, "splash_logo.png", 768)
+# Splash: title on top, lantern in the middle, subtitle underneath (transparent PNG).
+# Type is Cinzel (SIL Open Font License, see tool/fonts/OFL-Cinzel.txt).
+FONT = os.path.join(os.path.dirname(__file__), "fonts", "Cinzel[wght].ttf")
+PARCHMENT = (243, 233, 210)
+
+
+def font(size, weight):
+    f = ImageFont.truetype(FONT, size)
+    f.set_variation_by_name(weight)
+    return f
+
+
+def tracked(draw, cy, text, fnt, fill, tracking, width):
+    """Draw [text] horizontally centred in [width] with letter-spacing, centred on y=cy."""
+    widths = [draw.textlength(ch, font=fnt) for ch in text]
+    total = sum(widths) + tracking * (len(text) - 1)
+    x = (width - total) / 2
+    asc, desc = fnt.getmetrics()
+    y = cy - (asc + desc) / 2
+    for ch, w in zip(text, widths):
+        draw.text((x, y), ch, font=fnt, fill=fill)
+        x += w + tracking
+
+
+def splash_art(out_w=1152, out_h=1728):
+    k = 2  # draw at 2x, then downsample
+    cw, ch = out_w * k, out_h * k
+    canvas = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+    mark = Image.new("RGBA", (W, W), (0, 0, 0, 0))
+    mark.alpha_composite(glow(0.27, 0.50))
+    mark.alpha_composite(lantern(0.92))
+    size = int(cw * 0.78)
+    mark = mark.resize((size, size), Image.LANCZOS)
+    canvas.alpha_composite(mark, ((cw - size) // 2, int(ch * 0.50 - size / 2)))
+    d = ImageDraw.Draw(canvas)
+    tracked(d, ch * 0.195, "ELDRIN", font(int(cw * 0.15), "Bold"), PARCHMENT + (255,), cw * 0.035, cw)
+    tracked(d, ch * 0.795, "The Lanterns of the Deep", font(int(cw * 0.043), "Regular"), AMBER + (255,), cw * 0.008, cw)
+    return canvas.resize((out_w, out_h), Image.LANCZOS)
+
+
+splash_art().save("assets/icon/splash_logo.png")
+
+# Android 12 clips the splash icon to a circle (~2/3 of the canvas), so keep the
+# lantern and its halo well inside it.
+a12 = Image.new("RGBA", (W, W), (0, 0, 0, 0))
+a12.alpha_composite(glow(0.14, 0.45))
+a12.alpha_composite(lantern(0.56))
+save(a12, "splash_logo_a12.png", 768)
 print("wrote assets/icon/")

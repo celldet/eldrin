@@ -79,8 +79,9 @@ class _EldrinAppState extends State<EldrinApp> {
           final engine = snapshot.data;
           if (engine == null) {
             return Scaffold(
+              backgroundColor: const Color(0xFF0E1116),
               body: Center(
-                child: Image.asset('assets/icon/splash_logo.png', width: 192),
+                child: Image.asset('assets/icon/splash_logo.png', width: 288),
               ),
             );
           }
