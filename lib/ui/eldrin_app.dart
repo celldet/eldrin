@@ -78,7 +78,11 @@ class _EldrinAppState extends State<EldrinApp> {
           }
           final engine = snapshot.data;
           if (engine == null) {
-            return const Scaffold(body: Center(child: CircularProgressIndicator()));
+            return Scaffold(
+              body: Center(
+                child: Image.asset('assets/icon/splash_logo.png', width: 192),
+              ),
+            );
           }
           return Builder(
             builder: (context) => GameScreen(
