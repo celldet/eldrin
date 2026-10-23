@@ -1,0 +1,341 @@
+[
+  {
+    "id": "lamp",
+    "name": "ember lamp",
+    "aliases": [
+      "lamp",
+      "lantern lamp",
+      "my lamp"
+    ],
+    "desc": "A small brass lamp with a pinhole of living ember at its heart. It was in your hand when you woke.",
+    "start": "inv",
+    "extras": [
+      {
+        "when": [
+          "light<8"
+        ],
+        "text": "The ember is dim and sulky. You should rest soon."
+      },
+      {
+        "when": [
+          "light>7",
+          "light<16"
+        ],
+        "text": "The ember has dimmed a little, but still holds."
+      },
+      {
+        "when": [
+          "light>15"
+        ],
+        "text": "The ember burns bright and steady."
+      }
+    ],
+    "useAlone": {
+      "text": "You turn the lamp's little wheel. The ember flares politely, then settles. It burns only when you need it to, in dark places, and rests when you do."
+    }
+  },
+  {
+    "id": "spectacles",
+    "name": "pair of spectacles",
+    "aliases": [
+      "spectacles",
+      "glasses",
+      "specs",
+      "round glasses"
+    ],
+    "desc": "Thick round lenses in a wire frame, bent at one temple. Wick's, surely: nobody else would need lenses this thick.",
+    "start": "heron_rest"
+  },
+  {
+    "id": "oil_flask",
+    "name": "flask of lamp oil",
+    "aliases": [
+      "flask",
+      "oil",
+      "lamp oil",
+      "oil flask"
+    ],
+    "desc": "A stoppered flask of clear gold oil that smells of warm summer evenings.",
+    "start": "void"
+  },
+  {
+    "id": "rope",
+    "name": "coil of rope",
+    "aliases": [
+      "rope",
+      "coil",
+      "line",
+      "cord"
+    ],
+    "desc": "A long coil of salt-stiff rope. Strong enough to hold your weight, if properly attached to something.",
+    "start": "void"
+  },
+  {
+    "id": "stone_apple",
+    "name": "stone apple",
+    "aliases": [
+      "apple",
+      "stone fruit",
+      "fruit"
+    ],
+    "desc": "An apple carved out of grey granite, warm from the sun. Pell would probably like it.",
+    "start": "orchard",
+    "takeText": "It is heavier than it looks, but not unpleasant."
+  },
+  {
+    "id": "hook",
+    "name": "iron hook",
+    "aliases": [
+      "hook",
+      "iron hook",
+      "rusted hook"
+    ],
+    "desc": "A heavy, three-pronged iron hook with an eyelet at one end. It would grip nearly anything, if it had a line.",
+    "start": "flooded_market"
+  },
+  {
+    "id": "grapple",
+    "name": "grappling hook",
+    "aliases": [
+      "grapple",
+      "grappling hook",
+      "hook and rope",
+      "line"
+    ],
+    "desc": "An iron hook knotted firmly to a long rope. A proper grapple, ready to catch hold of a pillar across a gulf.",
+    "start": "void"
+  },
+  {
+    "id": "mirror_shard",
+    "name": "shard of mirror",
+    "aliases": [
+      "shard",
+      "mirror",
+      "mirror shard",
+      "glass shard"
+    ],
+    "desc": "A flat, bright shard of silvered glass. It throws a dancing spot of light when you tilt it.",
+    "start": "void"
+  },
+  {
+    "id": "valve_wheel",
+    "name": "valve wheel",
+    "aliases": [
+      "wheel",
+      "iron wheel",
+      "handle",
+      "valve handle"
+    ],
+    "desc": "A heavy iron wheel with a square hole at its centre, rusty but sound. It looks as if it would fit a valve stem.",
+    "start": "cistern"
+  },
+  {
+    "id": "glowmoss",
+    "name": "clump of glowmoss",
+    "aliases": [
+      "moss",
+      "glowmoss",
+      "clump",
+      "clump of moss"
+    ],
+    "desc": "A soft handful of glowing moss. It smells of rain and could brighten a flagging lamp.",
+    "start": "glow_cavern",
+    "useAlone": {
+      "text": "You rub the moss against the ember. The lamp drinks in its glow, and burns brighter than before.",
+      "effects": [
+        "light:+20",
+        "remove:glowmoss"
+      ]
+    }
+  },
+  {
+    "id": "tongs",
+    "name": "pair of tongs",
+    "aliases": [
+      "tongs",
+      "long tongs",
+      "smith's tongs"
+    ],
+    "desc": "Long iron tongs with wooden grips, built for holding things too hot or too holy to touch.",
+    "start": "forge_gallery"
+  },
+  {
+    "id": "ledger",
+    "name": "salt-stiff ledger",
+    "aliases": [
+      "ledger",
+      "book",
+      "volume",
+      "salt book"
+    ],
+    "desc": "A thick book swollen with salt, its cover stamped with a bell.",
+    "start": "archive",
+    "readText": "You pry the pages open. Most are lost, but one entry is clear: 'THE HUSH IS CALLED BY THREE BELLS, RUNG IN THE ORDER THE HEART KEEPS. IT BEGINS AT THE HEART, THEN SINKS TO THE ROOT, THEN CLIMBS TO THE SKY. SING IT WRONG AND IT UNSINGS ITSELF.'"
+  },
+  {
+    "id": "lantern_tide",
+    "name": "Lantern of Tide",
+    "aliases": [
+      "tide lantern",
+      "lantern of tide",
+      "lantern",
+      "blue lantern"
+    ],
+    "desc": "A lantern of green glass and blue fire, light that moves like water. It is cool in your hand and smells of deep places.",
+    "start": "baptistry",
+    "onTake": [
+      "set:got_tide",
+      "score:10"
+    ],
+    "takeText": "As you lift it, a long breath moves through the cathedral, and the water remembers where the sea is."
+  },
+  {
+    "id": "lantern_ember",
+    "name": "Lantern of Ember",
+    "aliases": [
+      "ember lantern",
+      "lantern of ember",
+      "lantern",
+      "orange lantern",
+      "red lantern"
+    ],
+    "desc": "A lantern of black iron with a heart of living ember, steadily warm against your tongs.",
+    "start": "ember_forge",
+    "takeRequires": [
+      "has:tongs"
+    ],
+    "takeBlocked": "You reach out, and the heat of the Lantern of Ember bites your fingers. You snatch your hand back. It would take something long and iron to lift this.",
+    "onTake": [
+      "set:got_ember",
+      "score:10"
+    ],
+    "takeText": "Held in the tongs, the lantern burns sweetly, a coal that will not go out."
+  },
+  {
+    "id": "lantern_hush",
+    "name": "Lantern of Hush",
+    "aliases": [
+      "hush lantern",
+      "lantern of hush",
+      "lantern",
+      "grey lantern"
+    ],
+    "desc": "A lantern of frosted glass holding a light so gentle it seems to be listening to you.",
+    "start": "hush_sanctum",
+    "onTake": [
+      "set:got_hush",
+      "score:10"
+    ],
+    "takeText": "The moment you lift it, the whole world seems to draw a quiet, grateful breath."
+  },
+  {
+    "id": "sea_glass",
+    "name": "piece of sea glass",
+    "aliases": [
+      "glass",
+      "sea glass",
+      "green glass",
+      "piece of glass"
+    ],
+    "desc": "A frosted lozenge of green glass, rounded by years of sea. It glows faintly in the dark.",
+    "start": "tidal_flats"
+  },
+  {
+    "id": "grey_feather",
+    "name": "grey feather",
+    "aliases": [
+      "feather",
+      "heron feather"
+    ],
+    "desc": "A long grey heron feather, soft as a held breath.",
+    "start": "heron_rest"
+  },
+  {
+    "id": "bent_spoon",
+    "name": "bent spoon",
+    "aliases": [
+      "spoon",
+      "bent cutlery"
+    ],
+    "desc": "A tarnished silver spoon, bent at an angle that suggests a great deal of effort or a great deal of boredom.",
+    "start": "driftwood"
+  },
+  {
+    "id": "luck_coin",
+    "name": "lucky coin",
+    "aliases": [
+      "coin",
+      "lucky coin",
+      "luck coin"
+    ],
+    "desc": "A worn copper coin with a tiny lamp stamped on one side and a tiny moon on the other. It feels warm, like it's been loved.",
+    "start": "void"
+  },
+  {
+    "id": "whisper_shell",
+    "name": "whispering shell",
+    "aliases": [
+      "shell",
+      "whisper shell",
+      "whispering shell"
+    ],
+    "desc": "A spiral shell. Held to the ear, it whispers, very quietly: 'you were brave.'",
+    "start": "whisper_alcove",
+    "onTake": [
+      "set:curio_alcove_shell"
+    ],
+    "readText": "You hold the shell to your ear. 'It was only the dark,' it whispers."
+  },
+  {
+    "id": "pocket_moon",
+    "name": "pocket moon",
+    "aliases": [
+      "moon",
+      "pocket moon",
+      "small moon",
+      "little moon"
+    ],
+    "desc": "A marble of pale light the size of a plum. A lamp-maker's prized work, perhaps never sold because it was too good.",
+    "start": "attic",
+    "useAlone": {
+      "text": "You cup the little moon in your hands and breathe on it. Warm light floods into your lamp, refilling it to the brim.",
+      "effects": [
+        "light:full"
+      ]
+    }
+  },
+  {
+    "id": "moon_drop",
+    "name": "silver drop",
+    "aliases": [
+      "drop",
+      "silver drop",
+      "moon drop",
+      "droplet"
+    ],
+    "desc": "A drop of liquid silver that does not roll, does not sink, and does not stop being a little bit of the moon.",
+    "start": "void",
+    "useAlone": {
+      "text": "You tip the silver drop into your lamp. The ember brightens to a clear, cold white, and your lamp is filled to the brim.",
+      "effects": [
+        "light:full",
+        "remove:moon_drop"
+      ]
+    }
+  },
+  {
+    "id": "unfinished_map",
+    "name": "unfinished map",
+    "aliases": [
+      "map",
+      "unfinished map",
+      "blank map"
+    ],
+    "desc": "A map of the Hollowmere with many rooms still blank, and a note: 'Perhaps you will fill them in.'",
+    "start": "unwritten",
+    "onTake": [
+      "set:curio_study",
+      "score:4"
+    ]
+  }
+]

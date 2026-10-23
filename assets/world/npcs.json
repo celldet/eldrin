@@ -1,0 +1,67 @@
+[
+  {
+    "id": "wick",
+    "name": "Wick",
+    "aliases": ["wick", "hermit", "old man", "lamplighter", "man", "old wick"],
+    "start": "driftwood",
+    "desc": "A stooped old lamplighter in a coat made of many coats, squinting at everything with a fierce, friendly blur.",
+    "lines": [
+      {"when": ["flag:beacon_lit"], "text": "Wick: 'The Beacon! I saw it from the dune, bright as a new morning. First light in forty tides! The city's open to you now. Be careful in the dark parts, lamp-bearer, and rest where the light grows.'"},
+      {"when": ["flag:wick_spectacles"], "text": "Wick: 'Pour the oil into the Beacon, then give it a flame from your lamp. The lighthouse is just north of here. It has been waiting longer than I have.'"},
+      {"when": ["has:spectacles"], "text": "Wick squints in your direction. 'Is that... are those my spectacles? Oh, give them here, there's a good soul.'"},
+      {"when": [], "text": "Wick peers up from his fire with a fierce blur of a squint. 'A new face! Or a new smudge, anyway. I lost my spectacles in the reeds, and everything's been a bit of a smear since. West of the shore, the reeds. They lean the way to go, if you read them right.'"}
+    ],
+    "topics": [
+      {"keywords": ["lantern", "lanterns", "light"], "text": "Wick: 'Three lanterns, three hearts of the world: Tide, Ember, Hush. Put them in the altar at the heart and the Deep remembers the day. Easier said than carried.'"},
+      {"keywords": ["spectacles", "glasses", "reeds", "lost"], "when": ["!flag:wick_spectacles"], "text": "Wick: 'Somewhere in the reeds, I'm sure of it. The reeds all lean the way the wind wants. Follow them north, then west, and you'll find my nest of a heron's rest.'"},
+      {"keywords": ["oil", "flask"], "text": "Wick: 'Oil for the Beacon? I have a flask somewhere. I'd be glad to let you have it, once I can see to find it.'"},
+      {"keywords": ["beacon", "lighthouse"], "text": "Wick: 'The old Beacon. Needs oil, needs a flame. Whoever lights it calls the tide back from the causeway. Don't ask me how; I'm a lamplighter, not a philosopher.'"},
+      {"keywords": ["gate", "riddle", "city", "drowned"], "text": "Wick: 'The gate in the east speaks in riddles of what falls and what breaks. Think about the sky's own habits, and answer both halves.'"},
+      {"keywords": ["pell", "heron", "orchard"], "text": "Wick: 'Pell! Keeps herons, grows stone apples. Odd man. Might have rope, if you're good company.'"}
+    ],
+    "fallback": [
+      "Wick scratches his chin. 'I'm afraid I haven't the faintest. Ask me about the lanterns, perhaps.'",
+      "Wick shrugs, enormously. 'Not my department, friend.'"
+    ],
+    "please": [
+      {"when": ["!flag:curio_please"], "text": "Wick blinks. 'Please! Do you know, nobody has said please since the water came.' He presses a small coin into your palm. 'Luck, then. Take it.'", "effects": ["set:curio_please", "give:luck_coin", "score:3"]},
+      {"when": ["flag:curio_please"], "text": "Wick beams. 'Still polite. You'll go far, or at least somewhere pleasant.'"}
+    ],
+    "thanks": [
+      {"when": ["flag:wick_spectacles", "!flag:curio_thanks"], "text": "Wick wipes his spectacles in delight. 'No, no. Thank YOU, lamp-bearer. And since you've manners, a tip: the old well, north of the orchard, is kinder to visitors in the small hours.'", "effects": ["set:curio_thanks", "score:2"]},
+      {"when": ["flag:curio_thanks"], "text": "Wick nods. 'Always a pleasure, friend.'"},
+      {"when": [], "text": "Wick looks puzzled. 'For what? I haven't done anything yet. But it's nice to be thanked in advance.'"}
+    ]
+  },
+  {
+    "id": "pell",
+    "name": "Pell",
+    "aliases": ["pell", "heron-keeper", "heron keeper", "keeper", "gardener", "masked man", "man"],
+    "start": "orchard",
+    "desc": "A tall, thin man in a mask carved like a heron's head, standing on one leg as if he had been doing so for years. His hands are stained grey from stone.",
+    "lines": [
+      {"when": ["flag:pell_rope_given"], "text": "Pell, from behind the heron mask: 'Mind the rope, and mind the gods. They sulk if they are ignored. If you're looking for the choir, it's east of the garden north of here. The bells there will not sing for those who don't know their order.'"},
+      {"when": ["has:stone_apple"], "text": "Pell's heron mask tilts, very slowly, toward the apple in your hand. 'Is that a stone apple? I'd trade you a good long rope for one. Go on, give it here.'"},
+      {"when": [], "text": "Pell regards you with the stillness of a man balancing on a tidal wave. 'A walker. We get few. I grow the stone apples, and the herons keep me. Bring me an apple and I'll trade you a rope. Take one from the trees, they are quite plentiful, but heavy.'"}
+    ],
+    "topics": [
+      {"keywords": ["rope"], "when": ["!flag:pell_rope_given"], "text": "Pell: 'A rope? I've got lots of rope. I'll trade you one for an apple, if you'd be so kind as to take one off the tree.'"},
+      {"keywords": ["rope"], "when": ["flag:pell_rope_given"], "text": "Pell: 'You've got the rope. Do something clever with it. A rope on its own is only an invitation.'"},
+      {"keywords": ["apple", "apples", "stone"], "text": "Pell: 'Stone apples are the Hollowmere's patient fruit. They never ripen and never spoil. You could say they are the only reliable thing here.'"},
+      {"keywords": ["choir", "bells", "bell", "hush"], "text": "Pell: 'The Choir? East of the garden of the forgotten gods. The bells there answer only to the old order. I never learned it, but there's a ledger in the drowned city's archive, they say.'"},
+      {"keywords": ["gods", "garden", "forgotten"], "text": "Pell: 'They were worshipped once. Now they are only stones in a garden. Be gentle with them; they remember how it felt.'"},
+      {"keywords": ["wick", "lamplighter"], "text": "Pell: 'Wick? Good soul. Can't see his own feet, mind.'"}
+    ],
+    "fallback": [
+      "Pell tilts his mask, saying nothing with great elegance.",
+      "Pell shifts to the other leg. 'Ask me about apples. Or ropes. Or nothing at all.'"
+    ],
+    "please": [
+      {"when": [], "text": "Pell's mask dips in a tiny bow. 'Manners. How refreshing for a place with so few people to use them.'"}
+    ],
+    "thanks": [
+      {"when": ["flag:pell_rope_given"], "text": "Pell inclines the heron's head. 'You are welcome. Be kind to the stones, and the stones will be kind to you.'"},
+      {"when": [], "text": "Pell blinks, slowly, behind the mask. 'Gratitude, for no reason. How very unusual.'"}
+    ]
+  }
+]

@@ -1,0 +1,1235 @@
+{
+  "start": "shore",
+  "maxLight": 30,
+  "rooms": [
+    {
+      "id": "shore",
+      "name": "The Waking Shore",
+      "desc": "You wake face-down on cold grey sand, with the taste of salt and old bronze in your mouth. The sea here does not crash; it breathes, slow and patient, and far out a drowned spire leans from the water like a pointing finger. A dune path runs north, a muddy flat stretches east, and to the west a field of tall pale reeds whispers to itself.",
+      "variants": [
+        {
+          "when": [
+            "flag:beacon_lit"
+          ],
+          "text": "Far inland, the beacon's light lies gold across the wave-tops, and the water seems a little less sorrowful."
+        },
+        {
+          "when": [
+            "has:lantern_tide|has:lantern_ember|has:lantern_hush"
+          ],
+          "text": "Your lantern throws long, hopeful shadows over the sand."
+        }
+      ],
+      "exits": {
+        "north": "driftwood",
+        "east": "tidal_flats",
+        "west": "reed1",
+        "in": {
+          "to": "unwritten",
+          "visibleIf": [
+            "flag:study_open"
+          ]
+        }
+      },
+      "scenery": [
+        {
+          "id": "sea",
+          "names": [
+            "sea",
+            "water",
+            "waves",
+            "ocean"
+          ],
+          "desc": "The sea is the colour of a bruise healing. Wading in feels like a bad idea the water itself would agree with."
+        },
+        {
+          "id": "spire",
+          "names": [
+            "spire",
+            "tower",
+            "finger"
+          ],
+          "desc": "A needle of drowned stone, far out. Faint lights crawl along it, as though something down there is still keeping house."
+        },
+        {
+          "id": "pebble",
+          "names": [
+            "pebble",
+            "stone",
+            "grey pebble",
+            "small stone"
+          ],
+          "desc": "A small grey pebble. It is entirely unremarkable.",
+          "streak": {
+            "count": 5,
+            "text": "You stare at the pebble. The pebble, with great dignity, winks at you. When you blink, it is just a pebble again, and somewhere a very small joke has been told.",
+            "effects": [
+              "set:curio_pebble",
+              "score:3"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "reed1",
+      "name": "The Whisperreeds",
+      "desc": "Tall pale reeds close over your head, rustling with half-heard conversations. Every path looks the same, but the reeds here all lean the same way, bowed toward the north as though listening to something there.",
+      "exits": {
+        "east": "shore",
+        "north": "reed2",
+        "south": {
+          "to": "reed1",
+          "text": "You push through the reeds for a long while and arrive, somehow, back where you began."
+        },
+        "west": {
+          "to": "reed1",
+          "text": "The reeds close behind you. After a lot of wading, the ground feels familiar. You are back at the start."
+        }
+      },
+      "scenery": [
+        {
+          "id": "reeds",
+          "names": [
+            "reeds",
+            "reed",
+            "grass",
+            "whisperreeds"
+          ],
+          "desc": "Every stalk bends the same way. If reeds could point, these would be giving directions."
+        }
+      ]
+    },
+    {
+      "id": "reed2",
+      "name": "Deeper in the Reeds",
+      "desc": "The whispering is louder here, nearly words. The reeds in this part of the thicket are bowed toward the west, as if somebody important had just passed that way.",
+      "exits": {
+        "west": "heron_rest",
+        "south": "reed1",
+        "north": {
+          "to": "reed1",
+          "text": "You wander in a wide loop and come out where you started."
+        },
+        "east": {
+          "to": "reed1",
+          "text": "You wander in a wide loop and come out where you started."
+        }
+      },
+      "scenery": [
+        {
+          "id": "reeds2",
+          "names": [
+            "reeds",
+            "reed",
+            "grass"
+          ],
+          "desc": "They lean west. Quite firmly, in fact."
+        }
+      ]
+    },
+    {
+      "id": "heron_rest",
+      "name": "Heron's Rest",
+      "desc": "The reeds part around a small dry hummock ringed with feathers. A nest of woven reed-stems sits in the middle, and the air is quiet, like the inside of a held breath.",
+      "variants": [
+        {
+          "when": [
+            "!flag:wick_spectacles"
+          ],
+          "text": "Something round and glassy glints in the nest."
+        }
+      ],
+      "exits": {
+        "east": "reed2"
+      },
+      "scenery": [
+        {
+          "id": "nest",
+          "names": [
+            "nest",
+            "woven nest"
+          ],
+          "desc": "A tidy nest, long abandoned. A hermit-sized pair of spectacles would be about the only thing a heron couldn't use."
+        }
+      ]
+    },
+    {
+      "id": "driftwood",
+      "name": "Driftwood Camp",
+      "desc": "Ship-ribs and tarpaulin have been bent into a snug camp. A fire of cold blue flame burns in a ring of stones, giving light but no heat. A lean-to shelters a heap of salvage. Paths lead south to the shore, north up a dune toward a broken lighthouse, and east into a stand of crooked trees.",
+      "variants": [
+        {
+          "when": [
+            "flag:attic_open"
+          ],
+          "text": "A hatch you could swear wasn't there before hangs open in the ceiling of the lean-to, trailing a rope ladder."
+        },
+        {
+          "when": [
+            "flag:wick_spectacles"
+          ],
+          "text": "Wick has perched his spectacles on his nose and is squinting happily at everything, even the fire."
+        }
+      ],
+      "exits": {
+        "south": "shore",
+        "north": "lighthouse_base",
+        "east": "orchard_path",
+        "up": {
+          "to": "attic",
+          "visibleIf": [
+            "flag:attic_open"
+          ]
+        }
+      },
+      "scenery": [
+        {
+          "id": "fire",
+          "names": [
+            "fire",
+            "flame",
+            "flames",
+            "blue fire",
+            "campfire"
+          ],
+          "desc": "Blue flame with no heat. It leans toward you slightly when you speak, like a dog hoping for scraps."
+        },
+        {
+          "id": "leanto",
+          "names": [
+            "lean-to",
+            "leanto",
+            "lean to",
+            "salvage",
+            "heap"
+          ],
+          "desc": "Rope, bottles, bent cutlery, a sextant with no glass. Someone has been collecting the sea's leftovers for a very long time."
+        }
+      ]
+    },
+    {
+      "id": "lighthouse_base",
+      "name": "The Lighthouse Base",
+      "desc": "The ground floor of a lighthouse that forgot how to shine. A spiral stair of salt-eaten iron climbs into the gloom, and a great mural covers the curved wall.",
+      "exits": {
+        "south": "driftwood",
+        "up": "lighthouse_top"
+      },
+      "scenery": [
+        {
+          "id": "mural",
+          "names": [
+            "mural",
+            "painting",
+            "wall",
+            "lanterns"
+          ],
+          "desc": "Three lanterns are painted here, faded but proud. The first is blue as deep water: the Lantern of the Tide. The second burns orange: the Lantern of Ember. The third is the pale grey of a held breath: the Lantern of Hush. Beneath them, in cracked letters: 'WHEN ALL THREE ARE LIT AT THE HEART, THE DEEP REMEMBERS THE DAY.'",
+          "extras": [
+            {
+              "when": [
+                "!flag:curio_mural"
+              ],
+              "text": "Something tells you this is the whole point of your being here.",
+              "effects": [
+                "set:curio_mural"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "stair",
+          "names": [
+            "stair",
+            "stairs",
+            "staircase"
+          ],
+          "desc": "Rusted iron, but it holds. It leads up to the lamp-room."
+        }
+      ]
+    },
+    {
+      "id": "lighthouse_top",
+      "name": "The Lamp-Room",
+      "desc": "A ring of cracked glass surrounds a vast bronze housing. In its heart sits the Beacon: a wide black bowl with a dry wick coiled in the bottom like a sleeping snake. Through the glass you see the whole coast, and to the east a drowned city, faintly glowing.",
+      "variants": [
+        {
+          "when": [
+            "flag:beacon_lit"
+          ],
+          "text": "The Beacon blazes with a clean white-gold flame, and the whole lamp-room hums with it."
+        },
+        {
+          "when": [
+            "flag:beacon_oiled",
+            "!flag:beacon_lit"
+          ],
+          "text": "The wick is glossy with oil now, waiting for a flame."
+        }
+      ],
+      "exits": {
+        "down": "lighthouse_base"
+      },
+      "scenery": [
+        {
+          "id": "beacon",
+          "names": [
+            "beacon",
+            "bowl",
+            "wick",
+            "housing"
+          ],
+          "desc": "A bowl big enough to bathe in, with a dry coil of wick at the bottom.",
+          "extras": [
+            {
+              "when": [
+                "flag:beacon_lit"
+              ],
+              "text": "It burns steadily. The tide, to its credit, is listening."
+            },
+            {
+              "when": [
+                "flag:beacon_oiled",
+                "!flag:beacon_lit"
+              ],
+              "text": "It's soaked with oil. All it needs is fire."
+            },
+            {
+              "when": [
+                "!flag:beacon_oiled"
+              ],
+              "text": "It's dry as old bone. It needs oil before it will take a flame."
+            }
+          ]
+        },
+        {
+          "id": "glass",
+          "names": [
+            "glass",
+            "window",
+            "windows"
+          ],
+          "desc": "Cracked but clear. To the east a drowned city glows faintly, cut off from the shore by black tidal water."
+        }
+      ]
+    },
+    {
+      "id": "tidal_flats",
+      "name": "The Tidal Flats",
+      "desc": "A great grey mudflat, ribbed by retreating water and studded with tide pools. To the east, a causeway of dark stone runs toward a distant gate.",
+      "variants": [
+        {
+          "when": [
+            "flag:beacon_lit"
+          ],
+          "text": "Beacon-light has called the tide out; the causeway lies bare and gleaming, and a bridge of bones can be seen beyond."
+        },
+        {
+          "when": [
+            "!flag:beacon_lit"
+          ],
+          "text": "The causeway east is under black, swirling water. The tide does not look like it will leave on its own."
+        }
+      ],
+      "exits": {
+        "west": "shore",
+        "east": {
+          "to": "bone_bridge",
+          "requires": [
+            "flag:beacon_lit"
+          ],
+          "blocked": "Black tidal water covers the causeway, deep and fast. Without a light to call the tide back, you would be swept away."
+        }
+      },
+      "scenery": [
+        {
+          "id": "pools",
+          "names": [
+            "pools",
+            "pool",
+            "tide pools",
+            "tidepools"
+          ],
+          "desc": "Tiny worlds of anemones and snails. One pool reflects a different sky from the one above you, but only briefly."
+        },
+        {
+          "id": "causeway",
+          "names": [
+            "causeway",
+            "road",
+            "path"
+          ],
+          "desc": "A road of dark stone that was built to be walked, not swum."
+        }
+      ]
+    },
+    {
+      "id": "bone_bridge",
+      "name": "The Bone Bridge",
+      "desc": "A bridge arches over a trench of black water, built from the ribs of something large enough to have had opinions about ships. Pale light seeps from the far end, where a great gate stands.",
+      "exits": {
+        "west": "tidal_flats",
+        "east": "drowned_gate"
+      },
+      "scenery": [
+        {
+          "id": "ribs",
+          "names": [
+            "ribs",
+            "bones",
+            "bone",
+            "bridge"
+          ],
+          "desc": "Each rib is as thick as a ship's mast. The bridge is warm underfoot, as if still remembering a heartbeat."
+        }
+      ]
+    },
+    {
+      "id": "drowned_gate",
+      "name": "The Drowned Gate",
+      "desc": "A gate of green bronze stands wedged in a wall of fused coral, taller than any door should be. Lines of letters in drowned silver glow across its face. The road west leads back to the bridge.",
+      "variants": [
+        {
+          "when": [
+            "flag:gate_open"
+          ],
+          "text": "The gate stands open, and the pale light of the sunken city washes out over the road."
+        }
+      ],
+      "exits": {
+        "west": "bone_bridge",
+        "east": {
+          "to": "sunken_plaza",
+          "requires": [
+            "flag:gate_open"
+          ],
+          "blocked": "The gate is shut fast. It wants an answer, not a shove."
+        }
+      },
+      "scenery": [
+        {
+          "id": "gate",
+          "names": [
+            "gate",
+            "door",
+            "letters",
+            "writing",
+            "inscription",
+            "bronze gate"
+          ],
+          "desc": "The letters read: 'I FALL, YET NEVER BREAK. I BREAK, YET NEVER FALL. SPEAK US BOTH, AND PASS.'",
+          "extras": [
+            {
+              "when": [
+                "flag:gate_open"
+              ],
+              "text": "The letters have gone dim and contented."
+            }
+          ]
+        },
+        {
+          "id": "coral",
+          "names": [
+            "coral",
+            "wall"
+          ],
+          "desc": "Fused pink coral, warm as a living thing."
+        }
+      ]
+    },
+    {
+      "id": "sunken_plaza",
+      "name": "The Sunken Plaza",
+      "desc": "Beyond the gate lies a city under a dome of still water, held back by nothing you can see. A wide plaza of green flagstones glows beneath your feet. A statue stands at its centre. Streets lead north to a cathedral, east to a flooded market, and south to a low building lined with shelves. The gate lies to the west.",
+      "variants": [
+        {
+          "when": [
+            "flag:statue_bowed"
+          ],
+          "text": "The statue's hand hangs open now, empty and relieved."
+        }
+      ],
+      "exits": {
+        "west": "drowned_gate",
+        "north": "cathedral_nave",
+        "east": "flooded_market",
+        "south": "archive"
+      },
+      "scenery": [
+        {
+          "id": "statue",
+          "names": [
+            "statue",
+            "veil-bearer",
+            "veil bearer",
+            "figure",
+            "stone figure"
+          ],
+          "desc": "A robed figure of green stone, its face hidden behind a carved veil. Its head is bowed so low that its veil trails the ground, and its right hand is closed around something that glints.",
+          "extras": [
+            {
+              "when": [
+                "!flag:statue_bowed"
+              ],
+              "text": "It looks like it is waiting for someone to match its courtesy."
+            },
+            {
+              "when": [
+                "flag:statue_bowed"
+              ],
+              "text": "It looks lighter, somehow."
+            }
+          ]
+        },
+        {
+          "id": "plaza_dome",
+          "names": [
+            "dome",
+            "water",
+            "ceiling",
+            "sky"
+          ],
+          "desc": "Water, standing above you like a sky. Fish pass through it in slow procession, and none of them look down."
+        }
+      ]
+    },
+    {
+      "id": "flooded_market",
+      "name": "The Flooded Market",
+      "desc": "Rows of stalls stand ankle-deep in glowing water. Canvas awnings have turned to lace. A rusted grate in the floor of the market opens on a stairway leading down into darkness.",
+      "exits": {
+        "west": "sunken_plaza",
+        "down": "cistern"
+      },
+      "scenery": [
+        {
+          "id": "stalls",
+          "names": [
+            "stalls",
+            "stall",
+            "awnings",
+            "market"
+          ],
+          "desc": "Everything for sale here was sold long ago. The only thing left is the sense of a bargain."
+        },
+        {
+          "id": "grate",
+          "names": [
+            "grate",
+            "stairway",
+            "stairs",
+            "hole"
+          ],
+          "desc": "A rusted grate swung open on its hinges. A damp stair beyond it leads down into the dark. A lamp would be wise."
+        }
+      ]
+    },
+    {
+      "id": "archive",
+      "name": "The Salt Archive",
+      "desc": "A long, low hall of shelves crusted with white salt crystals. Thousands of books sleep here, swollen shut. A reading desk sits in the middle, and the only door leads back north to the plaza.",
+      "exits": {
+        "north": "sunken_plaza"
+      },
+      "scenery": [
+        {
+          "id": "shelves",
+          "names": [
+            "shelves",
+            "shelf",
+            "books",
+            "bookshelves"
+          ],
+          "desc": "Salt has fused every book to its neighbours. Only one volume, on the reading desk, is loose."
+        },
+        {
+          "id": "desk",
+          "names": [
+            "desk",
+            "reading desk",
+            "table"
+          ],
+          "desc": "A scarred oak desk. A single book lies open on it, the only thing in the archive not welded shut by salt."
+        }
+      ]
+    },
+    {
+      "id": "cistern",
+      "name": "The Dark Cistern",
+      "dark": true,
+      "desc": "Vaulted brick curves overhead, hung with dripping pipes. Black water ticks and trickles all around. A narrow walkway leads east toward a faint glow, and a stair climbs back up to the market.",
+      "variants": [
+        {
+          "when": [
+            "flag:drained"
+          ],
+          "text": "Far above, something large has stopped gurgling; the pipes drip more softly now."
+        }
+      ],
+      "exits": {
+        "up": "flooded_market",
+        "east": "glow_cavern",
+        "west": {
+          "to": "whisper_alcove",
+          "visibleIf": [
+            "flag:alcove_open"
+          ]
+        }
+      },
+      "scenery": [
+        {
+          "id": "pipes",
+          "names": [
+            "pipes",
+            "pipe",
+            "drips",
+            "water"
+          ],
+          "desc": "Iron pipes as thick as trees, sweating with brine. They lead toward the cathedral overhead."
+        },
+        {
+          "id": "wall_west",
+          "names": [
+            "west wall",
+            "wall",
+            "bricks"
+          ],
+          "desc": "Damp brick. Nothing remarkable, though the cold seems to come from one particular spot.",
+          "extras": [
+            {
+              "when": [
+                "flag:alcove_open"
+              ],
+              "text": "A passage now yawns where the bricks had been."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "glow_cavern",
+      "name": "The Glowmoss Cavern",
+      "glow": true,
+      "desc": "The cistern walkway opens into a natural cavern whose walls are furred with soft green moss that glows like a thousand sleeping fireflies. The air smells like rain on warm stone, and your lamp feels suddenly less lonely. Passages lead west toward the cistern and east toward a brighter shimmer.",
+      "exits": {
+        "west": "cistern",
+        "east": "crystal_hall"
+      },
+      "scenery": [
+        {
+          "id": "moss_wall",
+          "names": [
+            "moss",
+            "walls",
+            "wall",
+            "glowmoss"
+          ],
+          "desc": "The moss ripples when you breathe. It's good for resting in, if you want your lamp to remember what it is for."
+        }
+      ]
+    },
+    {
+      "id": "crystal_hall",
+      "name": "The Crystal Hall",
+      "glow": true,
+      "desc": "A cathedral of quartz, lit from a crack far above where a single shaft of white light falls onto a stone pedestal. The beam breaks into rainbows on the crystals. In the east wall is a door of sealed black glass, with no handle.",
+      "variants": [
+        {
+          "when": [
+            "flag:beam_aimed"
+          ],
+          "text": "A shard of mirror on the pedestal now throws the light in a single bright line straight at the black door, which has gone clear, then open."
+        },
+        {
+          "when": [
+            "!flag:beam_aimed"
+          ],
+          "text": "The pedestal's top is a shallow socket, as if it were meant to hold something that could turn the light."
+        }
+      ],
+      "exits": {
+        "west": "glow_cavern",
+        "east": {
+          "to": "forge_gallery",
+          "requires": [
+            "flag:beam_aimed"
+          ],
+          "blocked": "The black glass door is sealed, cold and smooth. It doesn't even have a seam to pry at."
+        }
+      },
+      "scenery": [
+        {
+          "id": "beam",
+          "names": [
+            "beam",
+            "light",
+            "shaft",
+            "ray"
+          ],
+          "desc": "A hard, bright shaft of light, falling straight down onto the pedestal and going nowhere in particular."
+        },
+        {
+          "id": "pedestal",
+          "names": [
+            "pedestal",
+            "socket",
+            "plinth"
+          ],
+          "desc": "A knee-high plinth of rose quartz with a shallow, angled socket in the top. Something flat and reflective would sit well in it."
+        },
+        {
+          "id": "blackdoor",
+          "names": [
+            "door",
+            "black door",
+            "glass door",
+            "black glass"
+          ],
+          "desc": "Black glass, polished as a pond at night. Its centre has a small round patch the width of a hand. Light would have to hit it just so."
+        }
+      ]
+    },
+    {
+      "id": "forge_gallery",
+      "name": "The Ashen Gallery",
+      "dark": true,
+      "desc": "A long hall of black stone, scattered with the shapes of anvils and quenching troughs. Cold ash drifts underfoot. Statues of smiths stand in alcoves, their hammers raised, and the hall ends in a ledge to the east.",
+      "exits": {
+        "west": "crystal_hall",
+        "east": "ash_chasm"
+      },
+      "scenery": [
+        {
+          "id": "anvils",
+          "names": [
+            "anvils",
+            "anvil",
+            "troughs",
+            "trough"
+          ],
+          "desc": "Anvils the size of coffins. Not one of them has a scratch on it, as if the smiths here had worked in a single, perfect blow."
+        },
+        {
+          "id": "smith_statues",
+          "names": [
+            "statues",
+            "smiths",
+            "alcoves"
+          ],
+          "desc": "Stone smiths, mid-swing. One of them is not quite stone: it holds a very long pair of tongs, and its eyes track you."
+        }
+      ]
+    },
+    {
+      "id": "ash_chasm",
+      "name": "The Ash Chasm",
+      "dark": true,
+      "desc": "The gallery ends at a ledge above a gulf of drifting ash. Across a gap too wide to jump, a red glow pulses in a doorway. Overhead, a stone pillar juts from the cliff face on the far side, thick as a tree and ringed with old scars.",
+      "variants": [
+        {
+          "when": [
+            "flag:chasm_crossed"
+          ],
+          "text": "Your grapple is hooked fast to the pillar, and a taut line runs across the chasm like a bridge."
+        }
+      ],
+      "exits": {
+        "west": "forge_gallery",
+        "east": {
+          "to": "ember_forge",
+          "requires": [
+            "flag:chasm_crossed"
+          ],
+          "blocked": "The chasm is far too wide to jump. Something to hook onto the far pillar would be useful."
+        }
+      },
+      "scenery": [
+        {
+          "id": "chasm",
+          "names": [
+            "chasm",
+            "gap",
+            "gulf",
+            "ash"
+          ],
+          "desc": "Ash falls into it, endlessly, and never seems to arrive at anything."
+        },
+        {
+          "id": "pillar",
+          "names": [
+            "pillar",
+            "column",
+            "scars"
+          ],
+          "desc": "A crooked pillar of black stone on the far side, ringed with scars where ropes and hooks once caught. Whoever made this place expected you to swing."
+        }
+      ]
+    },
+    {
+      "id": "ember_forge",
+      "name": "The Ember Forge",
+      "glow": true,
+      "desc": "A round chamber, bright and red, with a pool of molten light at its centre. The heat is gentle here, a held fever rather than a fire. In a basin on a pedestal above the pool, something burns without being consumed.",
+      "variants": [
+        {
+          "when": [
+            "!has:lantern_ember",
+            "!flag:placed_ember"
+          ],
+          "text": "The Lantern of Ember glows in its basin, white-orange and shimmering with heat."
+        }
+      ],
+      "exits": {
+        "west": {
+          "to": "ash_chasm",
+          "text": "You edge back across the line over the gulf."
+        }
+      },
+      "scenery": [
+        {
+          "id": "forge_pool",
+          "names": [
+            "pool",
+            "light",
+            "forge",
+            "molten light"
+          ],
+          "desc": "A pool of liquid light. Looking into it is like looking at a memory of fire."
+        }
+      ]
+    },
+    {
+      "id": "cathedral_nave",
+      "name": "The Drowned Cathedral",
+      "desc": "A vast nave under a vault of coral, its pews overgrown with anemones. Coloured light pours through windows of living glass. Past a rail at the north end, the baptistry beckons. A great iron valve juts from the wall near the rail.",
+      "variants": [
+        {
+          "when": [
+            "flag:drained"
+          ],
+          "text": "The rail has been left open and a damp, glimmering stair leads north into the baptistry."
+        },
+        {
+          "when": [
+            "!flag:drained"
+          ],
+          "text": "The way north is flooded. Black water fills the baptistry, brimming over the lip of the rail."
+        }
+      ],
+      "exits": {
+        "south": "sunken_plaza",
+        "north": {
+          "to": "baptistry",
+          "requires": [
+            "flag:drained"
+          ],
+          "blocked": "The baptistry is full of deep water. You would never find your way, let alone breathe."
+        }
+      },
+      "scenery": [
+        {
+          "id": "valve",
+          "names": [
+            "valve",
+            "iron valve",
+            "stem",
+            "pipe",
+            "wall valve"
+          ],
+          "desc": "A big iron valve bolted to the wall, with a bare stem sticking out where a wheel should be. A trickle of water oozes around it.",
+          "extras": [
+            {
+              "when": [
+                "flag:drained"
+              ],
+              "text": "It's open now, and quiet."
+            }
+          ]
+        },
+        {
+          "id": "pews",
+          "names": [
+            "pews",
+            "pew",
+            "anemones",
+            "windows",
+            "glass"
+          ],
+          "desc": "Pews furred with anemones, and windows of living glass in which small fish drift, one in each pane, like saints."
+        }
+      ]
+    },
+    {
+      "id": "baptistry",
+      "name": "The Baptistry",
+      "dark": true,
+      "desc": "A round stone room, still dripping, with a shallow basin at its centre. The light here is a blue deeper than any you have seen. In the basin, bobbing in the last inch of water, sits a lantern.",
+      "exits": {
+        "south": "cathedral_nave"
+      },
+      "scenery": [
+        {
+          "id": "font",
+          "names": [
+            "font",
+            "basin",
+            "bowl"
+          ],
+          "desc": "A carved stone font with the last water of the cathedral pooled at the bottom. The lantern floats in it like a lily."
+        }
+      ]
+    },
+    {
+      "id": "orchard_path",
+      "name": "The Crooked Path",
+      "desc": "A path of trodden sand winds between crooked salt-bleached trees. The camp lies back to the west and the trees open up to the east into an orchard of some kind.",
+      "exits": {
+        "west": "driftwood",
+        "east": "orchard"
+      },
+      "scenery": [
+        {
+          "id": "trees",
+          "names": [
+            "trees",
+            "tree"
+          ],
+          "desc": "Trees bent over like old men reading something at their feet."
+        }
+      ]
+    },
+    {
+      "id": "orchard",
+      "name": "The Orchard of Stone Apples",
+      "desc": "Gnarled trees bear heavy fruit that gleams like polished granite. Grey herons stalk between the trunks. A path leads back west, and another climbs north toward a moonlit well.",
+      "variants": [
+        {
+          "when": [
+            "flag:pell_rope_given"
+          ],
+          "text": "Pell has settled on an upturned crate, looking pleased with the arrangement."
+        }
+      ],
+      "exits": {
+        "west": "orchard_path",
+        "north": "moon_well"
+      },
+      "scenery": [
+        {
+          "id": "apple_trees",
+          "names": [
+            "trees",
+            "tree",
+            "orchard",
+            "fruit"
+          ],
+          "desc": "The apples are stone. You could take one, if you were the sort of person who took heavy fruit."
+        },
+        {
+          "id": "herons",
+          "names": [
+            "herons",
+            "heron",
+            "birds"
+          ],
+          "desc": "They regard you with the polite horror of somebody who has seen too many tourists."
+        }
+      ]
+    },
+    {
+      "id": "moon_well",
+      "name": "The Moon Well",
+      "desc": "A ring of white stones encloses a well whose surface is perfectly still. The air smells of rain and old coins. Paths lead south to the orchard and north through a broken arch toward a garden of statues.",
+      "variants": [
+        {
+          "when": [
+            "time:night"
+          ],
+          "text": "It is the deep of night, and the well seems to be waiting for you. A second moon, brighter than the first, floats on its surface."
+        }
+      ],
+      "exits": {
+        "south": "orchard",
+        "north": "gods_garden"
+      },
+      "scenery": [
+        {
+          "id": "well",
+          "names": [
+            "well",
+            "moon well",
+            "water",
+            "surface"
+          ],
+          "desc": "The water is so still it may not be water. It reflects the sky, but not quite the same sky.",
+          "extras": [
+            {
+              "when": [
+                "time:night",
+                "!flag:curio_moon"
+              ],
+              "text": "At this hour, a single silver drop lifts from the water and hangs in the air before you. It settles into your hand like a held breath.",
+              "effects": [
+                "set:curio_moon",
+                "give:moon_drop",
+                "score:4"
+              ]
+            },
+            {
+              "when": [
+                "time:night",
+                "flag:curio_moon"
+              ],
+              "text": "The well is as quiet as a closed book. It has already given you what it had."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gods_garden",
+      "name": "The Garden of Forgotten Gods",
+      "desc": "Weathered stone figures stand in untidy rows among grey flowers, each with a face worn nearly smooth by the wind. The gods of the Hollowmere were forgotten here, one at a time, until only their outlines were left. A hall with a belfry rises to the east, and to the north, a gloomy archway leads toward a glimmer.",
+      "variants": [
+        {
+          "when": [
+            "has:lantern_tide|has:lantern_ember|has:lantern_hush"
+          ],
+          "text": "The faceless stones turn very slightly toward your lantern, the way flowers do."
+        }
+      ],
+      "exits": {
+        "south": "moon_well",
+        "east": "choir_hall",
+        "north": {
+          "to": "heart",
+          "requires": [
+            "has:lantern_tide|has:lantern_ember|has:lantern_hush|flag:placed_tide|flag:placed_ember|flag:placed_hush"
+          ],
+          "blocked": "The northern archway is thick with dark, as if the very idea of light were forbidden. You would not walk into it empty-handed. Perhaps a lantern would be welcome."
+        }
+      },
+      "scenery": [
+        {
+          "id": "gods",
+          "names": [
+            "gods",
+            "god",
+            "statues",
+            "figures",
+            "stones",
+            "flowers"
+          ],
+          "desc": "Their faces are gone, but their postures remain: one lifts a hand to bless, one shields its eyes, one is plainly mid-step in a dance."
+        }
+      ]
+    },
+    {
+      "id": "choir_hall",
+      "name": "The Hollow Choir",
+      "desc": "A long hall with rows of choir stalls. At its end three bells hang from a crossbeam, each a different size. The squat, fat one at the left is stamped ROOT. The middle one, round and warm, is stamped HEART. The tall, slender one at the right is stamped SKY. A bronze door at the back is sealed with a seam of silence. The garden lies west.",
+      "variants": [
+        {
+          "when": [
+            "flag:choir_open"
+          ],
+          "text": "The bronze door now stands wide, and a soft grey hush spills out like breath on a cold morning."
+        }
+      ],
+      "exits": {
+        "west": "gods_garden",
+        "east": {
+          "to": "hush_sanctum",
+          "requires": [
+            "flag:choir_open"
+          ],
+          "blocked": "The bronze door at the back is sealed. There's a seam of silence where a handle should be. Perhaps the right song would open it."
+        }
+      },
+      "scenery": [
+        {
+          "id": "bell_root",
+          "names": [
+            "root bell",
+            "root",
+            "low bell",
+            "fat bell",
+            "squat bell"
+          ],
+          "desc": "A squat, heavy bell stamped ROOT. It looks like it would sing very low."
+        },
+        {
+          "id": "bell_heart",
+          "names": [
+            "heart bell",
+            "heart",
+            "middle bell",
+            "round bell",
+            "mid bell"
+          ],
+          "desc": "A round bell stamped HEART, the middle one. It looks warm, even in the cold."
+        },
+        {
+          "id": "bell_sky",
+          "names": [
+            "sky bell",
+            "sky",
+            "high bell",
+            "tall bell",
+            "slender bell"
+          ],
+          "desc": "A tall, slender bell stamped SKY, ringing faintly all by itself."
+        },
+        {
+          "id": "bronze_door",
+          "names": [
+            "door",
+            "bronze door",
+            "seam"
+          ],
+          "desc": "A bronze door, shut tight. A seam of silence runs down its centre, like a mouth.",
+          "extras": [
+            {
+              "when": [
+                "flag:choir_open"
+              ],
+              "text": "It's open now."
+            }
+          ]
+        },
+        {
+          "id": "choir_stalls",
+          "names": [
+            "stalls",
+            "choir stalls",
+            "seats"
+          ],
+          "desc": "Empty seats, polished by a thousand years of nobody sitting in them."
+        }
+      ]
+    },
+    {
+      "id": "hush_sanctum",
+      "name": "The Hush Sanctum",
+      "dark": true,
+      "desc": "A small round chamber where sound goes to rest. Your footsteps make no noise. In the centre, on a plain stone stand, the Lantern of Hush glows the soft grey of a breath on glass.",
+      "exits": {
+        "west": "choir_hall"
+      },
+      "scenery": [
+        {
+          "id": "stand",
+          "names": [
+            "stand",
+            "stone stand",
+            "pedestal"
+          ],
+          "desc": "A plain stone stand worn smooth by generations of patient silence."
+        }
+      ]
+    },
+    {
+      "id": "heart",
+      "name": "The Heart of the Hollowmere",
+      "desc": "A vast cavern of black glass, ceiling lost in dark. In its centre stands an altar of three hollow sockets: one the colour of deep water, one the colour of ember, and one the colour of nothing at all. The dark here is not empty; it is waiting.",
+      "variants": [
+        {
+          "when": [
+            "flag:placed_tide"
+          ],
+          "text": "In the first socket, the Lantern of Tide shines a steady, rippling blue."
+        },
+        {
+          "when": [
+            "flag:placed_ember"
+          ],
+          "text": "In the second socket, the Lantern of Ember burns a warm orange."
+        },
+        {
+          "when": [
+            "flag:placed_hush"
+          ],
+          "text": "In the third socket, the Lantern of Hush glows grey and soft."
+        }
+      ],
+      "exits": {
+        "south": "gods_garden"
+      },
+      "scenery": [
+        {
+          "id": "altar",
+          "names": [
+            "altar",
+            "sockets",
+            "socket",
+            "stone altar"
+          ],
+          "desc": "A black altar with three sockets. One for Tide, one for Ember, one for Hush. It is waiting for you to put each in its place."
+        }
+      ]
+    },
+    {
+      "id": "whisper_alcove",
+      "name": "The Whispering Alcove",
+      "dark": true,
+      "desc": "A tiny chamber behind the bricks, so quiet that you can hear the cistern thinking. The walls are covered with the faint scratches of other people who also once decided not to be afraid. A smooth shelf juts from the wall.",
+      "exits": {
+        "east": "cistern"
+      },
+      "scenery": [
+        {
+          "id": "scratches",
+          "names": [
+            "scratches",
+            "walls",
+            "marks",
+            "writing"
+          ],
+          "desc": "Hundreds of tiny tally marks, and under them, in a careful hand: 'It was only the dark.'"
+        }
+      ]
+    },
+    {
+      "id": "attic",
+      "name": "The Lamp-Maker's Attic",
+      "desc": "A cramped loft crammed with half-built lamps, jars of glass, and spools of silver wire. Dust hangs in the air like unfinished thoughts. Nobody has been here for a long time, yet everything has been recently tidied.",
+      "exits": {
+        "down": "driftwood"
+      },
+      "scenery": [
+        {
+          "id": "lamps",
+          "names": [
+            "lamps",
+            "lamp parts",
+            "jars",
+            "wire",
+            "glass"
+          ],
+          "desc": "Every lamp in here is nearly finished. It's as though the maker kept stopping, one screw short, hoping for someone to come along."
+        }
+      ]
+    },
+    {
+      "id": "unwritten",
+      "name": "The Unwritten Room",
+      "desc": "A small white room with a single desk, a single lamp, and a blank map pinned to the wall. It has the feel of a place that has been waiting a very long time for someone to ask what it is. A door marked OUT leads back to the shore.",
+      "exits": {
+        "out": "shore"
+      },
+      "scenery": [
+        {
+          "id": "blank_map",
+          "names": [
+            "map",
+            "blank map",
+            "wall",
+            "desk"
+          ],
+          "desc": "A map of the Hollowmere with all the rooms blank and a note in the corner: 'Yet to be dreamt. Add as needed.'"
+        }
+      ]
+    }
+  ]
+}

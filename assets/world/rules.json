@@ -1,0 +1,508 @@
+{
+  "interactions": [
+    {
+      "id": "give_spectacles",
+      "verbs": [
+        "give",
+        "use",
+        "put"
+      ],
+      "item": "spectacles",
+      "target": "wick",
+      "requires": [
+        "!flag:wick_spectacles"
+      ],
+      "text": "Wick takes the spectacles in both hands, hooks them over his ears, and the world snaps into focus. 'Oh! There you are! And there's the fire! And there's... that is a very strange hat.' He rummages in the lean-to and presses a flask of golden oil into your hands. 'For the Beacon in the lighthouse, north of here. Pour it, then light it. It'll call the tide off the causeway.'",
+      "effects": [
+        "set:wick_spectacles",
+        "remove:spectacles",
+        "give:oil_flask",
+        "score:5"
+      ]
+    },
+    {
+      "id": "oil_beacon",
+      "verbs": [
+        "use",
+        "put",
+        "give"
+      ],
+      "item": "oil_flask",
+      "target": "beacon",
+      "room": "lighthouse_top",
+      "requires": [
+        "!flag:beacon_oiled"
+      ],
+      "text": "You pull the stopper and pour the golden oil over the dry wick. It drinks it in greedily, going dark and glossy, and the whole lamp-room smells of summer evenings. The flask is empty now.",
+      "effects": [
+        "set:beacon_oiled",
+        "remove:oil_flask",
+        "score:2"
+      ]
+    },
+    {
+      "id": "light_beacon_lit",
+      "verbs": [
+        "light",
+        "use",
+        "put"
+      ],
+      "item": "lamp",
+      "target": "beacon",
+      "requires": [
+        "flag:beacon_lit"
+      ],
+      "text": "The Beacon is already blazing. Your little ember is, for once, outshone."
+    },
+    {
+      "id": "light_beacon",
+      "verbs": [
+        "light",
+        "use",
+        "put"
+      ],
+      "item": "lamp",
+      "target": "beacon",
+      "requires": [
+        "flag:beacon_oiled",
+        "!flag:beacon_lit"
+      ],
+      "text": "You tilt your lamp to the oiled wick. For one held breath nothing happens. Then the Beacon catches with a soft roar, and a column of white-gold light surges up through the glass and out over the dark sea. Far below, the tide begins to draw back from the causeway like a curtain.",
+      "effects": [
+        "set:beacon_lit",
+        "score:8"
+      ]
+    },
+    {
+      "id": "light_beacon_dry",
+      "verbs": [
+        "light",
+        "use",
+        "put"
+      ],
+      "item": "lamp",
+      "target": "beacon",
+      "requires": [
+        "!flag:beacon_oiled"
+      ],
+      "text": "You hold the ember to the wick. It singes, blackens, and goes out. The Beacon is far too dry to burn; it needs oil first."
+    },
+    {
+      "id": "open_gate",
+      "verbs": [
+        "open",
+        "push",
+        "use"
+      ],
+      "target": "gate",
+      "implicit": true,
+      "text": "The gate does not move. It does not wish to be pushed; it wishes to be answered. Perhaps try saying something."
+    },
+    {
+      "id": "bow_statue",
+      "verbs": [
+        "bow"
+      ],
+      "target": "statue",
+      "implicit": true,
+      "room": "sunken_plaza",
+      "requires": [
+        "!flag:statue_bowed"
+      ],
+      "text": "You bow low, matching the statue's courtesy. The stone hand slowly uncurls, and in its palm lies a flat, bright shard of silvered glass. It drops into your waiting hands.",
+      "effects": [
+        "set:statue_bowed",
+        "give:mirror_shard",
+        "score:4"
+      ]
+    },
+    {
+      "id": "bow_statue_again",
+      "verbs": [
+        "bow"
+      ],
+      "target": "statue",
+      "implicit": true,
+      "room": "sunken_plaza",
+      "requires": [
+        "flag:statue_bowed"
+      ],
+      "text": "You bow again. The statue, whose hand is empty, seems moved, but has nothing further to give."
+    },
+    {
+      "id": "shard_pedestal",
+      "verbs": [
+        "use",
+        "put",
+        "combine"
+      ],
+      "item": "mirror_shard",
+      "target": "pedestal",
+      "requires": [
+        "!flag:beam_aimed"
+      ],
+      "text": "You wedge the mirror shard into the quartz socket and tilt it until the shaft of light kinks, flashes across the hall, and strikes the black door's central patch. The glass clears like ice melting and the door slides open with a sigh.",
+      "effects": [
+        "set:beam_aimed",
+        "remove:mirror_shard",
+        "score:6"
+      ]
+    },
+    {
+      "id": "combine_grapple",
+      "verbs": [
+        "combine",
+        "use",
+        "put"
+      ],
+      "item": "rope",
+      "target": "hook",
+      "requires": [
+        "has:rope",
+        "has:hook"
+      ],
+      "failText": "You'll need to be carrying both the rope and the hook.",
+      "text": "You thread the rope through the hook's eyelet and knot it with a sailor's bend. In your hands is a proper grappling hook, heavy and ready to catch hold of something.",
+      "effects": [
+        "remove:rope",
+        "remove:hook",
+        "give:grapple",
+        "set:grapple_made",
+        "score:4"
+      ]
+    },
+    {
+      "id": "grapple_pillar",
+      "verbs": [
+        "use",
+        "put",
+        "combine"
+      ],
+      "item": "grapple",
+      "target": "pillar",
+      "requires": [
+        "!flag:chasm_crossed"
+      ],
+      "text": "You whirl the grapple twice around your head and let it fly. The iron bites into the scarred pillar across the gulf with a sound like a bell. You haul on the line; it holds. A rope bridge of sorts now spans the chasm.",
+      "effects": [
+        "set:chasm_crossed",
+        "score:4"
+      ]
+    },
+    {
+      "id": "grapple_chasm",
+      "verbs": [
+        "use",
+        "put"
+      ],
+      "item": "grapple",
+      "target": "chasm",
+      "requires": [
+        "!flag:chasm_crossed"
+      ],
+      "text": "Throwing the grapple at the empty gulf wouldn't help. It needs something to bite into. The scarred pillar across the way looks promising.",
+      "effects": []
+    },
+    {
+      "id": "valve_wheel",
+      "verbs": [
+        "use",
+        "put",
+        "combine",
+        "turn"
+      ],
+      "item": "valve_wheel",
+      "target": "valve",
+      "requires": [
+        "!flag:drained"
+      ],
+      "text": "You fit the wheel onto the valve stem and heave. It grinds, groans, and turns. Somewhere in the walls the great pipes begin to gurgle, and the baptistry's black water slides away into the drains. A trail of damp steps appears beyond the rail.",
+      "effects": [
+        "set:drained",
+        "remove:valve_wheel",
+        "score:6"
+      ]
+    },
+    {
+      "id": "valve_bare",
+      "verbs": [
+        "turn",
+        "push",
+        "open"
+      ],
+      "target": "valve",
+      "implicit": true,
+      "requires": [
+        "!flag:drained"
+      ],
+      "text": "The stem is bare; there is nothing to grip. You'd need a wheel that fits."
+    },
+    {
+      "id": "give_apple",
+      "verbs": [
+        "give",
+        "use",
+        "put"
+      ],
+      "item": "stone_apple",
+      "target": "pell",
+      "requires": [
+        "!flag:pell_rope_given"
+      ],
+      "text": "Pell takes the apple with enormous gravity, weighs it in his palm, and sets it on a stump with the air of a man placing a crown. 'A fine specimen.' From behind a tree he produces a long coil of rope and hands it over. 'A fair trade, walker. Do something clever with it.'",
+      "effects": [
+        "set:pell_rope_given",
+        "remove:stone_apple",
+        "give:rope",
+        "score:4"
+      ]
+    },
+    {
+      "id": "altar_tide",
+      "verbs": [
+        "put",
+        "use",
+        "give"
+      ],
+      "item": "lantern_tide",
+      "target": "altar",
+      "text": "You set the Lantern of Tide into its socket. It settles with a soft chime, and a sweep of rippling blue climbs the dark.",
+      "effects": [
+        "set:placed_tide",
+        "remove:lantern_tide",
+        "score:3"
+      ]
+    },
+    {
+      "id": "altar_ember",
+      "verbs": [
+        "put",
+        "use",
+        "give"
+      ],
+      "item": "lantern_ember",
+      "target": "altar",
+      "text": "You set the Lantern of Ember into its socket. It catches with a low roar, and a warm orange glow spreads across the black glass.",
+      "effects": [
+        "set:placed_ember",
+        "remove:lantern_ember",
+        "score:3"
+      ]
+    },
+    {
+      "id": "altar_hush",
+      "verbs": [
+        "put",
+        "use",
+        "give"
+      ],
+      "item": "lantern_hush",
+      "target": "altar",
+      "text": "You set the Lantern of Hush into its socket. The whole cavern holds its breath, and a pale grey glow settles over everything like snow.",
+      "effects": [
+        "set:placed_hush",
+        "remove:lantern_hush",
+        "score:3"
+      ]
+    },
+    {
+      "id": "dance_gods",
+      "verbs": [
+        "dance"
+      ],
+      "room": "gods_garden",
+      "requires": [
+        "!flag:curio_dance"
+      ],
+      "text": "Feeling a bit silly, you begin to dance among the forgotten gods. You do a slow, awkward turn. Then a bit of a spin. And then, very faintly, you hear the grey flowers hum, and the stones sway, one by one, in time. The mid-step god seems to shift its weight: very slightly, very graciously, in your direction.",
+      "effects": [
+        "set:curio_dance",
+        "score:2"
+      ]
+    },
+    {
+      "id": "dance_gods_again",
+      "verbs": [
+        "dance"
+      ],
+      "room": "gods_garden",
+      "requires": [
+        "flag:curio_dance"
+      ],
+      "text": "You dance again. The gods have seen it before. They are being very polite about it."
+    },
+    {
+      "id": "sing_choir",
+      "verbs": [
+        "sing"
+      ],
+      "room": "choir_hall",
+      "text": "You hum a few uncertain notes. The three bells tremble in sympathy, each one humming a different note back. They seem to be trying to tell you something about their order."
+    },
+    {
+      "id": "sing_anywhere",
+      "verbs": [
+        "sing"
+      ],
+      "text": "You sing a few bars. The Hollowmere listens with the polite stillness of an audience that didn't ask for this."
+    }
+  ],
+  "phrases": [
+    {
+      "phrases": [
+        "day",
+        "night",
+        "night and day",
+        "day and night",
+        "daybreak",
+        "nightfall",
+        "daybreak and nightfall",
+        "nightfall and daybreak",
+        "night falls and day breaks",
+        "day breaks and night falls",
+        "night falls day breaks",
+        "day breaks night falls"
+      ],
+      "room": "drowned_gate",
+      "requires": [
+        "!flag:gate_open"
+      ],
+      "text": "The silver letters flare, then settle. 'NIGHT FALLS, YET NEVER BREAKS. DAY BREAKS, YET NEVER FALLS. PASS.' With a groan of old bronze, the great gate swings inward, and the pale light of the sunken city washes over you.",
+      "effects": [
+        "set:gate_open",
+        "score:6"
+      ]
+    },
+    {
+      "phrases": [
+        "day",
+        "night",
+        "night and day",
+        "day and night",
+        "daybreak",
+        "nightfall"
+      ],
+      "room": "drowned_gate",
+      "requires": [
+        "flag:gate_open"
+      ],
+      "text": "The gate has already answered, and is not interested in answering twice."
+    }
+  ],
+  "hints": [
+    {
+      "when": [
+        "!flag:wick_spectacles",
+        "!has:spectacles"
+      ],
+      "text": "Wick, in the driftwood camp north of the shore, has lost something. The reeds west of the shore lean toward a path: follow where they point."
+    },
+    {
+      "when": [
+        "has:spectacles",
+        "!flag:wick_spectacles"
+      ],
+      "text": "Those spectacles belong to Wick. Try giving them to him."
+    },
+    {
+      "when": [
+        "flag:wick_spectacles",
+        "!flag:beacon_oiled"
+      ],
+      "text": "Take the oil flask north to the lighthouse and use it on the Beacon at the top."
+    },
+    {
+      "when": [
+        "flag:beacon_oiled",
+        "!flag:beacon_lit"
+      ],
+      "text": "The Beacon is oiled. Use your lamp on it, or simply light it."
+    },
+    {
+      "when": [
+        "flag:beacon_lit",
+        "!flag:gate_open"
+      ],
+      "text": "Cross the causeway and the bone bridge to the Drowned Gate. It asks a riddle about what falls and what breaks. Think of the sky."
+    },
+    {
+      "when": [
+        "flag:gate_open",
+        "!flag:statue_bowed"
+      ],
+      "text": "The statue in the plaza is bowing so low it seems to want a reply. Perhaps good manners will be repaid."
+    },
+    {
+      "when": [
+        "flag:gate_open",
+        "!has:hook",
+        "!flag:grapple_made",
+        "!flag:chasm_crossed"
+      ],
+      "text": "The flooded market has something iron and hooked. Pell, east of the driftwood camp, trades in rope. Together they could reach a long way."
+    },
+    {
+      "when": [
+        "flag:gate_open",
+        "!flag:drained",
+        "!has:valve_wheel"
+      ],
+      "text": "The cathedral's valve has lost its wheel. Look beneath the market, in the dark cistern, and bring your lamp. Rest in glowing places if the light runs low."
+    },
+    {
+      "when": [
+        "has:valve_wheel",
+        "!flag:drained"
+      ],
+      "text": "Take the wheel to the valve in the cathedral nave and use it."
+    },
+    {
+      "when": [
+        "flag:drained",
+        "!has:lantern_tide",
+        "!flag:placed_tide"
+      ],
+      "text": "The baptistry is drained. The Lantern of Tide waits there."
+    },
+    {
+      "when": [
+        "!flag:beam_aimed",
+        "flag:statue_bowed"
+      ],
+      "text": "East of the glowing cavern in the Crystal Hall, a pedestal wants something reflective."
+    },
+    {
+      "when": [
+        "flag:beam_aimed",
+        "!flag:chasm_crossed"
+      ],
+      "text": "Beyond the black door and the Ashen Gallery, a chasm needs a grapple and a pillar to hook onto. Pick up the tongs on the way."
+    },
+    {
+      "when": [
+        "flag:chasm_crossed",
+        "!has:lantern_ember",
+        "!flag:placed_ember"
+      ],
+      "text": "The Lantern of Ember is too hot to hold bare-handed. Use the tongs from the Ashen Gallery."
+    },
+    {
+      "when": [
+        "!flag:choir_open",
+        "!has:lantern_hush",
+        "!flag:placed_hush"
+      ],
+      "text": "The Hollow Choir lies east of the Garden of Forgotten Gods, north of the orchard. A ledger in the Salt Archive tells the order in which the bells should be rung."
+    },
+    {
+      "when": [
+        "has:lantern_tide|has:lantern_ember|has:lantern_hush|flag:placed_tide|flag:placed_ember|flag:placed_hush"
+      ],
+      "text": "Carry your lanterns to the altar at the Heart of the Hollowmere, north of the Garden of Forgotten Gods, and put them in their sockets."
+    },
+    {
+      "when": [],
+      "text": "You're doing fine. Explore, examine things, and talk to the people you meet."
+    }
+  ]
+}
