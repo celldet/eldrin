@@ -16,10 +16,15 @@ World loadTestWorld() {
 }
 
 /// A started game with a fixed (daytime) clock and a seeded RNG.
-Future<GameEngine> startedEngine({DateTime? now, MemorySaveStore? store}) async {
+Future<GameEngine> startedEngine({
+  DateTime? now,
+  MemorySaveStore? store,
+  bool entitled = true,
+}) async {
   final engine = GameEngine(
     world: loadTestWorld(),
     saveStore: store ?? MemorySaveStore(),
+    isEntitled: (_) => entitled,
     clock: () => now ?? DateTime(2026, 1, 1, 12),
   );
   await engine.submit('begin');

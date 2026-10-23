@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../game/engine.dart';
+import '../game/entitlements.dart';
+import 'paywall_sheet.dart';
 import 'quick_action_bar.dart';
 
 enum _EntryKind { echo, heading, text, banner }
@@ -13,9 +15,15 @@ class _LogEntry {
 
 /// The single game screen: status bar, scrolling log, quick actions, input.
 class GameScreen extends StatefulWidget {
-  const GameScreen({super.key, required this.engine, required this.onToggleTheme});
+  const GameScreen({
+    super.key,
+    required this.engine,
+    required this.entitlements,
+    required this.onToggleTheme,
+  });
 
   final GameEngine engine;
+  final Entitlements entitlements;
   final VoidCallback onToggleTheme;
 
   @override
@@ -69,7 +77,19 @@ class _GameScreenState extends State<GameScreen> {
       _busy = false;
     }
     _scrollToEnd();
+    final retry = _engine.takePaywallRequest();
+    if (retry != null && mounted) {
+      await _offerUnlock(retry);
+    }
     _focus.requestFocus();
+  }
+
+  /// Shows the paywall; if the player unlocks, retries the blocked move.
+  Future<void> _offerUnlock([String? retry]) async {
+    await showPaywall(context, widget.entitlements);
+    if (retry != null && widget.entitlements.fullGame && mounted) {
+      await _submit(retry);
+    }
   }
 
   void _prefill(String text) {
@@ -109,12 +129,27 @@ class _GameScreenState extends State<GameScreen> {
             onPressed: widget.onToggleTheme,
           ),
           PopupMenuButton<String>(
-            onSelected: (v) => _submit(v),
-            itemBuilder: (_) => const [
-              PopupMenuItem(value: 'help', child: Text('Help')),
-              PopupMenuItem(value: 'save', child: Text('Save game')),
-              PopupMenuItem(value: 'load', child: Text('Load game')),
-              PopupMenuItem(value: 'score', child: Text('Score')),
+            onSelected: (v) {
+              if (v == 'menu:unlock') {
+                _offerUnlock();
+              } else if (v == 'menu:restore') {
+                widget.entitlements.restore();
+                _offerUnlock();
+              } else {
+                _submit(v);
+              }
+            },
+            itemBuilder: (_) => [
+              const PopupMenuItem(value: 'help', child: Text('Help')),
+              const PopupMenuItem(value: 'save', child: Text('Save game')),
+              const PopupMenuItem(value: 'load', child: Text('Load game')),
+              const PopupMenuItem(value: 'score', child: Text('Score')),
+              const PopupMenuDivider(),
+              PopupMenuItem(
+                value: 'menu:unlock',
+                child: Text(widget.entitlements.fullGame ? 'Full game unlocked' : 'Unlock full game'),
+              ),
+              const PopupMenuItem(value: 'menu:restore', child: Text('Restore purchase')),
             ],
           ),
         ],

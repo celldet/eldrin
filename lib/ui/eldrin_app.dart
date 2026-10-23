@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/world_loader.dart';
 import '../game/engine.dart';
+import '../game/entitlements.dart';
 import '../game/save_store.dart';
 import 'game_screen.dart';
 import 'theme.dart';
@@ -19,16 +20,28 @@ class _EldrinAppState extends State<EldrinApp> {
 
   ThemeMode _mode = ThemeMode.system;
   late final Future<GameEngine> _engine = _createEngine();
+  final Entitlements _entitlements = StoreEntitlements();
 
   @override
   void initState() {
     super.initState();
     _restoreTheme();
+    _entitlements.init();
+  }
+
+  @override
+  void dispose() {
+    _entitlements.dispose();
+    super.dispose();
   }
 
   Future<GameEngine> _createEngine() async {
     final world = await loadWorldFromAssets();
-    return GameEngine(world: world, saveStore: PrefsSaveStore());
+    return GameEngine(
+      world: world,
+      saveStore: PrefsSaveStore(),
+      isEntitled: _entitlements.owns,
+    );
   }
 
   Future<void> _restoreTheme() async {
@@ -88,6 +101,7 @@ class _EldrinAppState extends State<EldrinApp> {
           return Builder(
             builder: (context) => GameScreen(
               engine: engine,
+              entitlements: _entitlements,
               onToggleTheme: () => _cycleTheme(context),
             ),
           );

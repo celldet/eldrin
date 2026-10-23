@@ -404,7 +404,9 @@
           "requires": [
             "flag:gate_open"
           ],
-          "blocked": "The gate is shut fast. It wants an answer, not a shove."
+          "blocked": "The gate is shut fast. It wants an answer, not a shove.",
+          "entitlement": "full",
+          "paywallText": "The gate stands open, and the pale light of the sunken city spills out over your boots. Beyond it lie the market, the archive, the drowned cathedral, and every road toward the three Lanterns. To walk on into the deep, unlock the full game."
         }
       },
       "scenery": [

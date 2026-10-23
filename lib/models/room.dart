@@ -8,6 +8,8 @@ class RoomExit {
     this.visibleIf = const [],
     this.blocked,
     this.text,
+    this.entitlement,
+    this.paywallText,
   });
 
   final String to;
@@ -22,6 +24,11 @@ class RoomExit {
   /// Text shown when the player walks through.
   final String? text;
 
+  /// Product the player must own to pass (e.g. "full"). Checked after
+  /// [requires]; if missing, [paywallText] is shown and the paywall opens.
+  final String? entitlement;
+  final String? paywallText;
+
   factory RoomExit.fromJson(Object json) {
     if (json is String) return RoomExit(to: json);
     final m = json as Map<String, dynamic>;
@@ -31,6 +38,8 @@ class RoomExit {
       visibleIf: readStrings(m['visibleIf']),
       blocked: m['blocked'] as String?,
       text: m['text'] as String?,
+      entitlement: m['entitlement'] as String?,
+      paywallText: m['paywallText'] as String?,
     );
   }
 }

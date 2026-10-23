@@ -17,6 +17,9 @@ import 'save_store.dart';
 
 enum Phase { title, playing, choice, ended }
 
+/// Tells the engine whether the player owns a product (see `Entitlements`).
+typedef EntitlementCheck = bool Function(String product);
+
 enum _Kind { item, scenery, npc }
 
 class _Target {
@@ -32,6 +35,7 @@ class GameEngine {
   GameEngine({
     required this.world,
     required this.saveStore,
+    required this.isEntitled,
     Clock? clock,
     Random? random,
   })  : _rules = RuleEvaluator(world, clock ?? DateTime.now),
@@ -43,8 +47,10 @@ class GameEngine {
 
   final World world;
   final SaveStore saveStore;
+  final EntitlementCheck isEntitled;
   final RuleEvaluator _rules;
   final Random _rng;
+  String? _paywallRetry;
 
   late GameState state;
   Phase phase = Phase.title;
@@ -74,6 +80,14 @@ class GameEngine {
           .map((e) => e.key)
           .toList()
       : const [];
+
+  /// If the last command ran into the paywall, returns the command that would
+  /// retry it once unlocked (and clears the request). Otherwise null.
+  String? takePaywallRequest() {
+    final retry = _paywallRetry;
+    _paywallRetry = null;
+    return retry;
+  }
 
   Future<List<String>> submit(String raw) async {
     final input = raw.trim();
@@ -439,6 +453,11 @@ class GameEngine {
     }
     if (!_rules.all(state, exit.requires)) {
       return [exit.blocked ?? 'Something bars the way.'];
+    }
+    final product = exit.entitlement;
+    if (product != null && !isEntitled(product)) {
+      _paywallRetry = dir;
+      return [exit.paywallText ?? 'This way is locked until you unlock the full game.'];
     }
     final dest = world.rooms[exit.to]!;
     final out = <String>[];

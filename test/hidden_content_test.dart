@@ -38,7 +38,11 @@ void main() {
   });
 
   test('title screen word', () async {
-    final e = GameEngine(world: loadTestWorld(), saveStore: MemorySaveStore());
+    final e = GameEngine(
+      world: loadTestWorld(),
+      saveStore: MemorySaveStore(),
+      isEntitled: (_) => true,
+    );
     await e.submit('frumbleglass');
     await e.submit('begin');
     await e.submit('in');

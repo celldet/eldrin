@@ -117,6 +117,23 @@ Conditions: `flag:x`, `has:item`, `here:item`, `npc:id`, `room:id`, `visited:roo
 Effects: `set:flag`, `clear:flag`, `give:item`, `remove:item`, `spawn:item`, `place:item@room`, `score:N`,
 `light:+N`, `light:full`, `move:room`.
 
+## In-app purchase
+
+The first chapter is free. It ends at the Drowned Gate, and a single one-time purchase ("full game")
+unlocks the rest. There are no ads and no subscriptions.
+
+- **Product id:** `eldrin_full_game`, in `lib/game/entitlements.dart` (`Entitlements.fullGameId`).
+  Create it as a **non-consumable** in App Store Connect and as a **one-time (managed) product**
+  in Google Play Console, with the same id.
+- **Where the gate is:** a room exit in `assets/world/rooms.json` carries `"entitlement": "full"`
+  (see the Drowned Gate's east exit). Any exit can be gated the same way.
+- **Restore and codes:** the unlock sheet has *Restore purchase* and *Have a code?* buttons. Codes are
+  created in the stores' own consoles (Apple offer codes, Google Play promo codes) and redeemed through
+  the platform's redemption screen. The game never validates codes itself.
+- **Testing:** debug builds show an extra *unlock without paying* button on the sheet. To test real
+  purchases, use a StoreKit configuration in Xcode (iOS) or a licence-testing account and an uploaded
+  internal-test build (Android).
+
 ## Saving
 
 `save` and `load` (or the buttons) store the game in the device's local key-value storage
