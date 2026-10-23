@@ -1,0 +1,12 @@
+:root { --bg: #0e1116; --ink: #e6d8b5; --accent: #f0a93b; --muted: #a89f86; }
+@media (prefers-color-scheme: light) {
+  :root { --bg: #f3e9d2; --ink: #2b2118; --accent: #8a4b14; --muted: #6b5d4a; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 Georgia, "Times New Roman", serif; }
+main { max-width: 680px; margin: 0 auto; padding: 40px 20px 80px; }
+h1 { font: 700 2rem/1.2 "Cinzel", Georgia, serif; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+h2 { margin-top: 2em; font-size: 1.15rem; letter-spacing: .05em; color: var(--accent); }
+a { color: var(--accent); }
+.muted { color: var(--muted); font-size: .9rem; }
+nav a { margin-right: 1.2em; }
