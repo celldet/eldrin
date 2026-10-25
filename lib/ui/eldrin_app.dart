@@ -9,7 +9,10 @@ import 'game_screen.dart';
 import 'theme.dart';
 
 class EldrinApp extends StatefulWidget {
-  const EldrinApp({super.key});
+  const EldrinApp({super.key, this.entitlements});
+
+  /// Overrides the store-backed entitlements (tests and screenshots).
+  final Entitlements? entitlements;
 
   @override
   State<EldrinApp> createState() => _EldrinAppState();
@@ -20,7 +23,7 @@ class _EldrinAppState extends State<EldrinApp> {
 
   ThemeMode _mode = ThemeMode.system;
   late final Future<GameEngine> _engine = _createEngine();
-  final Entitlements _entitlements = StoreEntitlements();
+  late final Entitlements _entitlements = widget.entitlements ?? StoreEntitlements();
 
   @override
   void initState() {

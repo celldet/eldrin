@@ -106,7 +106,7 @@ class PaywallSheet extends StatelessWidget {
                       ),
                     ],
                   ),
-                  if (kDebugMode)
+                  if (kDebugMode && entitlements is StoreEntitlements)
                     TextButton(
                       onPressed: entitlements.debugUnlock,
                       child: const Text('Debug: unlock without paying'),
