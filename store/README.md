@@ -9,7 +9,7 @@ store/
   listing/copy.json         the listing text (source of truth, within each store's limits)
   graphics/ios/             1024 icon, five 1320x2868 iPhone screenshots
   graphics/android/         512 icon, 1024x500 feature graphic, five 1080x1920 phone screenshots
-docs/                       privacy policy, support page, landing page (host these)
+docs/                       playeldrin.com website: landing, /support, /privacy, /terms
 ios/Runner/PrivacyInfo.xcprivacy   iOS privacy manifest
 ```
 
@@ -24,8 +24,8 @@ ios/Runner/PrivacyInfo.xcprivacy   iOS privacy manifest
 ## Only you can do these
 | # | Task | Where |
 | --- | --- | --- |
-| 1 | Replace `[YOUR SUPPORT EMAIL]` and `[YOUR NAME OR COMPANY]` in `docs/support.html` and `docs/privacy.html` | `docs/` |
-| 2 | Publish `docs/` (GitHub Pages: repo Settings > Pages > Deploy from branch `main`, folder `/docs`) and put the three URLs in both listings | GitHub |
+| 1 | Create the mailbox `support@playeldrin.com` (the site, privacy policy and listings all use it) | DNS / email host |
+| 2 | Publish `docs/` as playeldrin.com (see the website section below) | GitHub / DNS |
 | 3 | Decide the final **application ID** before the first upload (`app.eldrin.eldrin` can never change afterwards) | `android/app/build.gradle.kts`, Xcode bundle ID |
 | 4 | Join Apple Developer Program (US$99/yr) and Google Play Console (US$25 once) | developer.apple.com, play.google.com/console |
 | 5 | Create the in-app product `eldrin_full_game` in both stores and set the price | `listing/*.md` |
@@ -48,3 +48,8 @@ SHOT_DIR=store/screenshots/raw/android flutter drive --driver=test_driver/integr
 python3 tool/make_store_assets.py
 ```
 Icon and splash art: `python3 tool/make_icons.py`.
+
+## Website (playeldrin.com)
+`docs/` is a plain static site: `/`, `/support`, `/privacy`, `/terms`, `404.html`, with a `CNAME` for the domain. The pages are generated HTML; edit them directly.
+
+GitHub Pages: repo Settings > Pages > Deploy from branch `main`, folder `/docs`, custom domain `playeldrin.com`, then tick Enforce HTTPS. At your DNS provider add four `A` records for the apex (`185.199.108.153`, `.109.153`, `.110.153`, `.111.153`) and a `CNAME` for `www` pointing to `<github-user>.github.io`.

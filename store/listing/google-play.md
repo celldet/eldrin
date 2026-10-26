@@ -9,9 +9,9 @@ Everything to paste into Play Console. Items in **[brackets]** are yours to fill
 | Short description (80) | Find the three Lanterns of the Deep in a drowned realm. Type or tap. No ads. |
 | Category | Game > Adventure |
 | Tags | Adventure, Puzzle, Story rich, Text |
-| Contact email | **[your support email]** |
-| Website | **[https://YOUR-GITHUB-USER.github.io/eldrin/]** |
-| Privacy policy | **[https://YOUR-GITHUB-USER.github.io/eldrin/privacy.html]** |
+| Contact email | support@playeldrin.com |
+| Website | https://playeldrin.com |
+| Privacy policy | https://playeldrin.com/privacy |
 | Default language | English (United States) |
 
 **Full description (4000)**

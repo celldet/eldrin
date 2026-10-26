@@ -61,10 +61,10 @@ apps' names or trademarks.
 
 | Field | Value |
 | --- | --- |
-| Support URL | **[https://YOUR-GITHUB-USER.github.io/eldrin/support.html]** (see `docs/`) |
-| Marketing URL (optional) | **[https://YOUR-GITHUB-USER.github.io/eldrin/]** |
-| Privacy Policy URL | **[https://YOUR-GITHUB-USER.github.io/eldrin/privacy.html]** |
-| Copyright | **[2026 Your Name]** |
+| Support URL | https://playeldrin.com/support |
+| Marketing URL (optional) | https://playeldrin.com |
+| Privacy Policy URL | https://playeldrin.com/privacy |
+| Copyright | 2026 ReibLAR LLC |
 
 ## Screenshots
 Upload `store/graphics/ios/screenshots-6.9in/*.png` (1320 x 2868) to the **6.9-inch** iPhone slot, in order
