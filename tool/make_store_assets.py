@@ -98,9 +98,22 @@ def frame(raw_path, size, caption, crop_top, shot_width, caption_cy, shot_top, f
     return canvas.convert("RGB")
 
 
+def ios_alt(img, size):
+    """Centre-crop to the target aspect ratio, then scale (differences are <0.5%)."""
+    w, h = img.size
+    tw, th = size
+    if w * th > h * tw:
+        nw = round(h * tw / th)
+        img = img.crop(((w - nw) // 2, 0, (w - nw) // 2 + nw, h))
+    else:
+        nh = round(w * th / tw)
+        img = img.crop((0, (h - nh) // 2, w, (h - nh) // 2 + nh))
+    return img.resize(size, Image.LANCZOS)
+
+
 def main():
     gfx = os.path.join(ROOT, "store", "graphics")
-    for sub in ("ios/screenshots-6.9in", "android/phone-screenshots"):
+    for sub in ("ios/screenshots-6.9in", "ios/screenshots-6.7in", "ios/screenshots-6.5in", "android/phone-screenshots"):
         shutil.rmtree(os.path.join(gfx, sub), ignore_errors=True)
         os.makedirs(os.path.join(gfx, sub))
 
@@ -114,6 +127,9 @@ def main():
         ios = frame(f"{raw}/ios/{name}.png", (1320, 2868), caption, crop_top=120, shot_width=1120,
                     caption_cy=330, shot_top=540, font_px=104, radius=70)
         ios.save(os.path.join(gfx, f"ios/screenshots-6.9in/{name}.png"))
+        # Other accepted iPhone sizes, cut from the same artwork.
+        for sub, size in (("6.7in", (1290, 2796)), ("6.5in", (1284, 2778))):
+            ios_alt(ios, size).save(os.path.join(gfx, f"ios/screenshots-{sub}/{name}.png"))
         android = frame(f"{raw}/android/{name}.png", (1080, 1920), caption, crop_top=60, shot_width=840,
                         caption_cy=250, shot_top=420, font_px=88, radius=56)
         android.save(os.path.join(gfx, f"android/phone-screenshots/{name}.png"))

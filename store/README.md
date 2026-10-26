@@ -50,6 +50,6 @@ python3 tool/make_store_assets.py
 Icon and splash art: `python3 tool/make_icons.py`.
 
 ## Website (playeldrin.com)
-`docs/` is a plain static site: `/`, `/support`, `/privacy`, `/terms`, `404.html`, with a `CNAME` for the domain. The pages are generated HTML; edit them directly.
+`docs/` is a plain static site for Apache: `index.html`, `support.html`, `privacy.html`, `terms.html`, `404.html`. Upload the contents of `docs/` (including the hidden `.htaccess`) to the web root.
 
-GitHub Pages: repo Settings > Pages > Deploy from branch `main`, folder `/docs`, custom domain `playeldrin.com`, then tick Enforce HTTPS. At your DNS provider add four `A` records for the apex (`185.199.108.153`, `.109.153`, `.110.153`, `.111.153`) and a `CNAME` for `www` pointing to `<github-user>.github.io`.
+`.htaccess` serves `/support`, `/privacy` and `/terms` without `.html`, 301-redirects `/support.html`, `/support/` and `/index.html` to the clean URL, forces HTTPS and the bare domain (`www` redirects to `playeldrin.com`), and uses `404.html` for missing pages. It needs `mod_rewrite` and `AllowOverride All` (or at least `FileInfo`) for the web root. It is not used by GitHub Pages.
